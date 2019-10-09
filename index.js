@@ -17,24 +17,29 @@ if(argv.iterations && argv.iterations > 0) {
     return aprox;
 }
 
+/**
+ * Calculates PI by subdividing a polygon into another with twice as many sides "n" times
+ * The polygons are embedded within a circle of diameter 1
+ */
 module.exports = function calculatePI(n = 50) {
-    return calculatPolygonSideAmount(n) * calculatePolygonSideWidth(n);
+    return numberOfSidesOfThePolygon(n) * widthOfThePolygonSide(n);
 }
 
-function calculatPolygonSideAmount(n) {
+function numberOfSidesOfThePolygon(n) {
     return Math.pow(2, n+1);
 }
 
 
-function calculatePolygonSideWidth(n) {
+function widthOfThePolygonSide(n) {
     if(n == 1 || n < 1) {
+        //Width of the side of a square of diagonal 1
         return Math.sqrt(0.5)
     }
 
-    const previousApproximation = calculatePolygonSideWidth(n - 1)
+    const previousApproximation = widthOfThePolygonSide(n - 1)
 
-    const width = previousApproximation/2;
+    const base = previousApproximation/2;
     const height = (1 - Math.sqrt(1 - Math.pow(previousApproximation, 2)))/2;
 
-    return Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2));
+    return Math.sqrt(Math.pow(base, 2) + Math.pow(height, 2));
 }
