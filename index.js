@@ -21,7 +21,7 @@ if(argv.iterations && argv.iterations > 0) {
  * Calculates PI by subdividing a polygon into another with twice as many sides "n" times
  * The polygons are embedded within a circle of diameter 1
  */
-module.exports = function calculatePI(n = 50) {
+function calculatePI(n = 50) {
     return numberOfSidesOfThePolygon(n) * widthOfThePolygonSide(n);
 }
 
@@ -43,3 +43,5 @@ function widthOfThePolygonSide(n) {
 
     return Math.sqrt(Math.pow(base, 2) + Math.pow(height, 2));
 }
+
+module.exports = calculatePI;
