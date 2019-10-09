@@ -11,10 +11,14 @@ const argv = yargs.option("iterations", {
 
 if(argv.iterations && argv.iterations > 0) {
     const n = argv.iterations; 
-    const aprox = calculatPolygonSideAmount(n) * calculatePolygonSideWidth(n);
+    const aprox = calculatePI(n);
 
     console.log("The value of PI is: " + aprox);
     return aprox;
+}
+
+module.exports = function calculatePI(n = 50) {
+    return calculatPolygonSideAmount(n) * calculatePolygonSideWidth(n);
 }
 
 function calculatPolygonSideAmount(n) {
